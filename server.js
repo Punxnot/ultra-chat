@@ -70,6 +70,8 @@ mongoose.connect(dbUrl, (err) => {
   console.log('mongodb connected',err);
 });
 
-var server = http.listen(3000, () => {
+var port = process.env.PORT || 3000;
+
+var server = http.listen(port, () => {
   console.log('Server is running on port', server.address().port);
 });
