@@ -17,51 +17,10 @@
   <div class="inputs-container">
     <input id="name" class="form-control" placeholder="Name">
     <br>
-    <textarea id="message" class="form-control" placeholder="Your Message Here" rows="4"></textarea>
-    <br>
-    <button id="send" class="btn btn-success">Send</button>
+    <textarea id="message" class="form-control" placeholder="Your Message Here" rows="5"></textarea>
   </div>
 </div>
-<script>
-   var socket = io();
-    $(() => {
-      var pattern = Trianglify({
-    		width: window.innerWidth,
-    		height: window.innerHeight
-    	});
 
-      // Generate random pattern for background
-    	document.body.style.backgroundImage = 'url(' + pattern.png() + ')';
-
-      $("#send").click(() => {
-        sendMessage({name: $("#name").val(), message: $("#message").val()});
-        $("#message").val("");
-      })
-      getMessages();
-    })
-
-    socket.on('message', addMessages);
-    function addMessages(message){
-        $("#messages").append(`<div class="single-message-container"><h4 class="message-username"> ${message.name} </h4> <p class="message-body"> ${message.message} </p></div>`);
-        // TODO: Perform scrolling once instead of scrolling for each message
-        scrollToTheLast();
-    }
-    function getMessages() {
-      $.get('/messages', (data) => {
-        data.forEach(addMessages);
-        scrollToTheLast();
-      })
-    }
-    function sendMessage(message) {
-      $.post('/messages', message)
-    }
-    function scrollToTheLast() {
-      var allMessages = document.querySelectorAll(".message-body");
-      var lastMessage = allMessages[allMessages.length - 1];
-      if (lastMessage) {
-        lastMessage.scrollIntoView();
-      }
-    }
-</script>
+<script src="/index.js"></script>
 </body>
 </html>

@@ -1,12 +1,20 @@
+$text-color: #f2f2f2;
+
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+  margin-bottom: 0;
 }
 
 .container {
   width: 800px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.1);
-  color: #f2f2f2;
+  color: $text-color;
 }
 
 .messages-container {
@@ -21,17 +29,15 @@ body {
   padding: 20px;
   background: rgba(0, 0, 0, 0.4);
 
-  input,
-  textarea {
+  .form-control {
+    box-sizing: border-box;
     width: 100%;
     border: none;
     box-shadow: none;
     margin-bottom: 20px;
-  }
-
-  textarea {
-    resize: none;
-    overflow: auto;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: $text-color;
   }
 }
 
@@ -44,8 +50,25 @@ body {
   flex: 0 0 150px;
 }
 
+.message-body {
+  white-space: pre-wrap;
+}
+
 .single-message-container {
   display: flex;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-input-placeholder {
+  color: $text-color;
+}
+::-moz-placeholder {
+  color: $text-color;
+}
+:-ms-input-placeholder {
+  color: $text-color;
+}
+:-moz-placeholder {
+  color: $text-color;
 }
