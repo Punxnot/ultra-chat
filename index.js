@@ -35,7 +35,6 @@ function addAllMessages(data) {
 }
 
 function addSingleMessage(message) {
-  console.log(message);
   addMessage(message);
   scrollToTheLast();
 }
