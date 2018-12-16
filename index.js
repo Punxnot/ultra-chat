@@ -37,9 +37,16 @@ function addSingleMessage(message) {
   scrollToTheLast();
 }
 
+function formatDate(dateString) {
+  var dt = new Date(dateString);
+  var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  return dt.toLocaleDateString('ru-RU', options);
+}
+
 function addMessage(message) {
+  formatDate(message.date);
   message.message = handleLinks(message.message);
-  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p></div>`);
+  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p><span class="message-date">${formatDate(message.date)}</span></div>`);
 }
 
 function getMessages() {

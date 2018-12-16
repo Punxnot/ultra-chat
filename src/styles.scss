@@ -56,10 +56,18 @@ textarea {
 
 .message-body {
   white-space: pre-wrap;
+  flex: 0 0 calc(100% - 220px);
+}
+
+.message-date{
+  flex: 0 0 70px;
+  font-size: 10px;
+  color: #cccccc;
 }
 
 .single-message-container {
   display: flex;
+  justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
