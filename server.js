@@ -41,6 +41,7 @@ app.post('/messages', (req, res) => {
     if(err) {
       sendStatus(500);
     }
+    req.body.date = message.date;
     io.emit('message', req.body);
     res.sendStatus(200);
   });
