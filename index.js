@@ -38,7 +38,8 @@ function addSingleMessage(message) {
 }
 
 function addMessage(message) {
-  $("#messages").append(`<div class="single-message-container"><h4 class="message-username"> ${message.name} </h4> <p class="message-body">${message.message}</p></div>`);
+  message.message = handleLinks(message.message);
+  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p></div>`);
 }
 
 function getMessages() {
@@ -66,6 +67,13 @@ function sanitize(string) {
 			 replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '').
        trim();
   return output;
+}
+
+function handleLinks(text) {
+  var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  var text1 = text.replace(exp, "<a href='$1'>$1</a>");
+  var exp2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+  return text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
 }
 
 function handleFormSumit() {
