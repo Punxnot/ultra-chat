@@ -23,7 +23,7 @@ var Message = mongoose.model('Message',{
 var dbUrl = `mongodb://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@ds125574.mlab.com:25574/chat2`;
 
 app.get('/messages', (req, res) => {
-  Message.find({}, (err, messages)=> {
+  Message.find({}, null, {sort: {'_id': 1}}, (err, messages) => {
     res.send(messages);
   })
 });
