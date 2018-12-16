@@ -38,6 +38,10 @@ textarea {
     padding: 5px 10px;
     background: rgba(255, 255, 255, 0.2);
     color: $text-color;
+
+    &.error-field {
+      background: rgba(250, 128, 114, 0.5);
+    }
   }
 }
 

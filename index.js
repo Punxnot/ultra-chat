@@ -59,9 +59,30 @@ function scrollToTheLast() {
   }
 }
 
+function sanitize(string) {
+  var output = string.replace(/<script[^>]*?>.*?<\/script>/gi, '').
+			 replace(/<[\/\!]*?[^<>]*?>/gi, '').
+			 replace(/<style[^>]*?>.*?<\/style>/gi, '').
+			 replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '').
+       trim();
+  return output;
+}
+
 function handleFormSumit() {
-  sendMessage({name: $("#name").val(), message: $("#message").val()});
-  $("#message").val("");
+  var nameInput = document.getElementById('name');
+  var messageInput = document.getElementById('message');
+  var sanitizedName = sanitize(nameInput.value);
+  var sanitizedMessage = sanitize(messageInput.value);
+  if (sanitizedName.length && sanitizedMessage.length) {
+    nameInput.classList.remove('error-field');
+    messageInput.classList.remove('error-field');
+    sendMessage({name: sanitizedName, message: sanitizedMessage});
+    messageInput.value = '';
+  } else if (!sanitizedName.length) {
+    nameInput.classList.add('error-field');
+  } else if (!sanitizedMessage.length) {
+    messageInput.classList.add('error-field');
+  }
 }
 
 function getCaret(el) {
