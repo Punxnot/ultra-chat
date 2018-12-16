@@ -10,8 +10,6 @@ $(() => {
 
   $("#message").keyup(function(event) {
     if (event.which == 13) {
-      // event.preventDefault();
-      // handleFormSumit();
       var content = this.value;
       var caret = getCaret(this);
       if(event.shiftKey){
@@ -40,7 +38,7 @@ function addSingleMessage(message) {
 }
 
 function addMessage(message) {
-  $("#messages").append(`<div class="single-message-container"><h4 class="message-username"> ${message.name} </h4> <p class="message-body"> ${message.message} </p></div>`);
+  $("#messages").append(`<div class="single-message-container"><h4 class="message-username"> ${message.name} </h4> <p class="message-body">${message.message}</p></div>`);
 }
 
 function getMessages() {

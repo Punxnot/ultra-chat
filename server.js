@@ -9,23 +9,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-// var sass = require('node-sass');
-// var fs = require('fs');
-
-// sass.render({
-//   file: 'scss/styles.scss',
-//   outputStyle: 'compressed',
-//   outFile: 'styles.css'
-// }, (error, result) => {
-//   if(!error){
-//     // No errors during the compilation, write this result on the disk
-//     fs.writeFile('css/styles.css', result.css, function(err) {
-//       if(!err){
-//         console.log("Successfully compiled styles!");
-//       }
-//     });
-//   }
-// })
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -33,7 +16,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 var Message = mongoose.model('Message',{
   name : String,
-  message : String
+  message : String,
+  date: { type: Date, default: Date.now }
 });
 
 var dbUrl = `mongodb://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@ds125574.mlab.com:25574/chat2`;
@@ -59,6 +43,8 @@ app.post('/messages', (req, res) => {
     }
     io.emit('message', req.body);
     res.sendStatus(200);
+    console.log("=====================");
+    console.log(message);
   });
 });
 
