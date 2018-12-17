@@ -46,10 +46,10 @@ function formatDate(dateString) {
 function addMessage(message) {
   formatDate(message.date);
   message.message = handleLinks(message.message);
-  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p><span class="message-date">${formatDate(message.date)}</span><button type="button" onclick="return handleClick(event);">Ответить</button></div>`);
+  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p><span class="message-date">${formatDate(message.date)}</span><button type="button" onclick="return replyToThis(event);">Ответить</button></div>`);
 }
 
-function handleClick(e) {
+function replyToThis(e) {
   var messageText = e.target.parentElement.querySelector('.message-body').textContent;
   messageText = sanitize(messageText);
   var messageAuthor = e.target.parentElement.querySelector('.message-username').textContent;
