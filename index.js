@@ -17,7 +17,7 @@ $(() => {
         event.stopPropagation();
       } else {
         this.value = content.substring(0, caret - 1) + content.substring(caret, content.length);
-        handleFormSumit();
+        handleFormSubmit();
       }
     }
   });
@@ -46,7 +46,23 @@ function formatDate(dateString) {
 function addMessage(message) {
   formatDate(message.date);
   message.message = handleLinks(message.message);
-  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p><span class="message-date">${formatDate(message.date)}</span></div>`);
+  $("#messages").append(`<div class="single-message-container"><h4 class="message-username">${message.name}</h4> <p class="message-body">${message.message}</p><span class="message-date">${formatDate(message.date)}</span><button type="button" onclick="return handleClick(event);">Ответить</button></div>`);
+}
+
+function handleClick(e) {
+  var messageText = e.target.parentElement.querySelector('.message-body').textContent;
+  messageText = sanitize(messageText);
+  var messageAuthor = e.target.parentElement.querySelector('.message-username').textContent;
+
+  var messageText = messageText.replace(/(\r\n\t|\n|\r\t)/gm,"");
+  var arr = messageText.match(/.{1,30}/g);
+  var resultText = `> ${messageAuthor}:\n`;
+  for (chunk of arr) {
+    resultText += `> ${chunk} \n`;
+  }
+  var textArea = document.getElementById('message');
+  textArea.value = resultText;
+  textArea.focus();
 }
 
 function getMessages() {
@@ -83,7 +99,7 @@ function handleLinks(text) {
   return text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
 }
 
-function handleFormSumit() {
+function handleFormSubmit() {
   var nameInput = document.getElementById('name');
   var messageInput = document.getElementById('message');
   var sanitizedName = sanitize(nameInput.value);

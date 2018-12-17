@@ -66,10 +66,29 @@ textarea {
 }
 
 .single-message-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: none;
+    border: none;
+    background: #cccccc;
+    color: #4b4b4b;
+    font-size: 12px;
+    display: none;
+  }
+
+  &:hover button {
+    display: block;
+  }
 }
 
 ::-webkit-input-placeholder {
