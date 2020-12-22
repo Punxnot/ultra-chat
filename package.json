@@ -10,7 +10,7 @@
   "author": "Marina Sulim",
   "license": "ISC",
   "engines": {
-    "node": "13.x"
+    "node": "13.8"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
