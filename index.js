@@ -28,8 +28,10 @@ $(() => {
 socket.on('message', addSingleMessage);
 
 function addAllMessages(data) {
-  data.forEach(addMessage);
-  scrollToTheLast();
+  if (data && data.length) {
+    data.forEach(addMessage);
+    scrollToTheLast();
+  }
 }
 
 function addSingleMessage(message) {
