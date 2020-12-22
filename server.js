@@ -24,7 +24,7 @@ var Message = mongoose.model('Message',{
 // mongodb+srv://ozma:<password>@cluster0.4ec6x.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 // var dbUrl = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@cluster0.4ec6x.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
-var dbUrl = `mongodb+srv://ozma:${process.env.DBPASSWORD}@chat2.cghlp.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+var dbUrl = `mongodb+srv://ozma:Sonrisa42Palabra66@chat2.cghlp.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 app.get('/messages', (req, res) => {
   Message.find({}, null, {sort: {'_id': 1}}, (err, messages) => {
