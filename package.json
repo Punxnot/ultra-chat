@@ -9,6 +9,9 @@
   },
   "author": "Marina Sulim",
   "license": "ISC",
+  "engines": {
+    "node": "13.x"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
