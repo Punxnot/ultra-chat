@@ -20,7 +20,9 @@ var Message = mongoose.model('Message',{
   date: { type: Date, default: Date.now }
 });
 
-var dbUrl = `mongodb://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@ds125574.mlab.com:25574/chat2`;
+// var dbUrl = `mongodb://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@ds125574.mlab.com:25574/chat2`;
+// mongodb+srv://ozma:<password>@cluster0.4ec6x.mongodb.net/<dbname>?retryWrites=true&w=majority
+var dbUrl = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@cluster0.4ec6x.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
 app.get('/messages', (req, res) => {
   Message.find({}, null, {sort: {'_id': 1}}, (err, messages) => {
