@@ -1,4 +1,6 @@
 $text-color: #f2f2f2;
+$grey-mid: #cccccc;
+$grey-dark: #4b4b4b;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -56,13 +58,13 @@ textarea {
 
 .message-body {
   white-space: pre-wrap;
-  flex: 0 0 calc(100% - 220px);
+  flex: 1 1 100%;
 }
 
 .message-date{
-  flex: 0 0 70px;
+  flex: 0 0 80px;
   font-size: 10px;
-  color: #cccccc;
+  color: $grey-mid;
 }
 
 .single-message-container {
@@ -76,12 +78,12 @@ textarea {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
     box-shadow: none;
     border: none;
-    background: #cccccc;
-    color: #4b4b4b;
+    background: $grey-mid;
+    color: $grey-dark;
     font-size: 12px;
     display: none;
   }
